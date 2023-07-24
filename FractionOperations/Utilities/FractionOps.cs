@@ -56,6 +56,9 @@ namespace FractionOperations.Utilities
 
         public static Fraction Add(Fraction a, Fraction b)
         {
+            if (a == null || b == null)
+                throw new ArgumentNullException("Null fraction");
+
             //int gcd = Gcd(a.Denominator, b.Denominator);
             int lcm = MathHelpers.Lcm(a.Denominator, b.Denominator);
 
@@ -75,6 +78,9 @@ namespace FractionOperations.Utilities
 
         public static Fraction Multiply(Fraction a, Fraction b)
         {
+            if (a == null || b == null)
+                throw new ArgumentNullException("Null fraction");
+
             a = ConvertToImproperFraction(a);
             b = ConvertToImproperFraction(b);
 
@@ -86,6 +92,9 @@ namespace FractionOperations.Utilities
 
         public static Fraction Divide(Fraction a, Fraction b)
         {
+            if (a == null || b == null)
+                throw new ArgumentNullException("Null fraction");
+
             a = ConvertToImproperFraction(a);
             b = ConvertToImproperFraction(b);
 
@@ -97,6 +106,8 @@ namespace FractionOperations.Utilities
 
         public static Fraction Subtract(Fraction a, Fraction b)
         {
+            if (a == null || b == null)
+                throw new ArgumentNullException("Null fraction");
             //int gcd = Gcd(a.Denominator, b.Denominator);
             int lcm = MathHelpers.Lcm(a.Denominator, b.Denominator);
 
@@ -119,13 +130,30 @@ namespace FractionOperations.Utilities
 
         static Fraction ConvertToImproperFraction(Fraction frac)
         {
-            return new Fraction(0, frac.Whole * frac.Denominator + frac.Numerator, frac.Denominator);
+            if (frac == null)
+                throw new ArgumentNullException("Null fraction");
+            var isNegativeFraction = false;
+            if(frac.Numerator < 0 || frac.Whole < 0)
+            {
+                isNegativeFraction = true;
+                frac.Numerator = Math.Abs(frac.Numerator);
+                frac.Whole = Math.Abs(frac.Whole);
+            }
+            var improperNumerator = frac.Whole * frac.Denominator + frac.Numerator;
+            if (isNegativeFraction)
+            {
+                improperNumerator *= -1;
+            }
+            return new Fraction(0, improperNumerator, frac.Denominator);
         }
 
-        public static Fraction ReduceFraction(Fraction frac, int gcd = 0)
+        public static Fraction ReduceFraction(Fraction frac)
         {
+            if (frac == null)
+                throw new ArgumentNullException("Null fraction");
+
             frac.Numerator += frac.Whole * frac.Denominator;
-            if (gcd == 0) gcd = MathHelpers.Gcd(frac.Numerator, frac.Denominator);
+            var gcd = MathHelpers.Gcd(frac.Numerator, frac.Denominator);
 
             frac.Numerator /= gcd;
             frac.Denominator /= gcd;
@@ -138,19 +166,21 @@ namespace FractionOperations.Utilities
 
         public static Fraction ParseFraction(string input)
         {
+            if(input == null)
+                throw new ArgumentNullException("input");
+            
             string[] nums = input.Split(new char[] { '&', '/' });
 
             if (nums.Length == 0)
                 throw new ArgumentException("Invalid Expression");
 
 
-            if (nums.Length == 1 && !input.Contains('/') && !input.Contains('&'))
+            if (nums.Length == 1 && int.TryParse(input, out int n))
             {
-                int whole = int.Parse(nums[0]);
-                return new Fraction(whole);
+                return new Fraction(n);
             }
 
-            else if (!input.Contains('&') && nums.Length == 2)
+            else if (input.Contains('/') && nums.Length == 2)
             {
                 if (input[nums[0].Length] != '/')
                     throw new ArgumentException("Invalid Expression");

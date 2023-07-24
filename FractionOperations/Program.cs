@@ -7,25 +7,21 @@ using FractionOperations.Utilities;
 
 namespace FractionOperations
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             while (true)
             {
-                Console.Write("Enter an expression: ");
-                string? expression = Console.ReadLine();
-
                 try
                 {
-                    if (string.IsNullOrWhiteSpace(expression))
-                        throw new ArgumentException("Invalid Expression");
-                    else if (expression.Trim().ToLower() == "exit")
-                        break;
-
-                    expression = expression.Trim();
+                    Console.Write("Enter an expression or type 'exit': ");
+                    string? expression = Console.ReadLine();
                     
-                    string result = GenerateFinalOutput(expression);
+                    var result = GenerateFinalOutput(expression?.Trim());
+                    
+                    if (result == "exit")
+                        break;
                     
                     Console.WriteLine("= " + result);
                 }
@@ -36,11 +32,21 @@ namespace FractionOperations
             }
         }
 
-        static string GenerateFinalOutput(string input)
+        public static string GenerateFinalOutput(string? expression)
         {
-            var ans = FractionOps.Calculate(input);
+            if (string.IsNullOrEmpty(expression))
+                throw new ArgumentException("Invalid Expression");
+            
+            else if (expression.ToLower() == "exit")
+                return "exit";
+            
+            var ans = FractionOps.Calculate(expression);
+
             ans = FractionOps.ReduceFraction(ans);
-            return ExpressionHelpers.Stringify(ans);
+
+            string result = ExpressionHelpers.Stringify(ans);
+
+            return result;
         }
     }
 }

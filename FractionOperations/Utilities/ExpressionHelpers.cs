@@ -30,11 +30,10 @@ namespace FractionOperations.Utilities
             {
                 ans = String.Format("{0}", frac.Whole);
                 if (frac.Numerator != 0)
-                    ans += "&";
+                    ans += String.Format("&{0}/{1}", Math.Abs(frac.Numerator), Math.Abs(frac.Denominator));
             }
-
-            if (frac.Numerator != 0)
-                ans += String.Format("{0}/{1}", Math.Abs(frac.Numerator), Math.Abs(frac.Denominator));
+            else
+                ans += String.Format("{0}/{1}", frac.Numerator, Math.Abs(frac.Denominator));
 
             return ans;
         }

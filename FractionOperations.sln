@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FractionOperations", "FractionOperations\FractionOperations.csproj", "{A6B08211-75B9-4BD0-8EB1-4BEE814B2489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestFractionOps", "TestFractionOps\TestFractionOps.csproj", "{AB50E669-5ED3-4D72-AD0F-5764C95EFB67}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6B08211-75B9-4BD0-8EB1-4BEE814B2489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6B08211-75B9-4BD0-8EB1-4BEE814B2489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6B08211-75B9-4BD0-8EB1-4BEE814B2489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6B08211-75B9-4BD0-8EB1-4BEE814B2489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB50E669-5ED3-4D72-AD0F-5764C95EFB67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB50E669-5ED3-4D72-AD0F-5764C95EFB67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB50E669-5ED3-4D72-AD0F-5764C95EFB67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB50E669-5ED3-4D72-AD0F-5764C95EFB67}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D86BECE-21FD-40C4-BD0A-430F8D8083BA}
+	EndGlobalSection
+EndGlobal
